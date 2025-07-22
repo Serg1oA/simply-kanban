@@ -1,0 +1,187 @@
+/* ===========================
+   Base & Reset Styles
+   =========================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', Arial, sans-serif;
+  background: #f7f8fa;
+  color: #222;
+  padding: 32px;
+}
+
+/* ===========================
+   Typography
+   =========================== */
+h1 {
+  text-align: center;
+  margin-bottom: 32px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.column h2 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 18px;
+  color: #4f5d75;
+  letter-spacing: 0.5px;
+}
+
+/* ===========================
+   Kanban Board Layout
+   =========================== */
+#kanban {
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+}
+
+/* ===========================
+   Column Styles
+   =========================== */
+/* Restore horizontal width, reduce vertical height */
+.column {
+  padding: 16px 10px;
+  border-radius: 14px;
+  width: 320px;
+  min-height: 180px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  transition: box-shadow 0.2s;
+}
+
+/* Very similar pastel colors for each column */
+.column[data-status="todo"] {
+  background: #f0f4ff;
+}
+
+.column[data-status="inprogress"] {
+  background: #f4f6ff;
+}
+
+.column[data-status="done"] {
+  background: #eaf2ff;
+}
+
+.column:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+}
+
+/* ===========================
+   Tasks Container
+   =========================== */
+.tasks {
+  flex: 1;
+  min-height: 40px;
+  margin-bottom: 12px;
+}
+
+/* ===========================
+   Task Card Styles
+   =========================== */
+.task {
+  background: #e6eaf3;
+  margin-bottom: 10px;
+  padding: 10px 10px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  transition: background 0.2s;
+}
+
+.task:hover {
+  background: #dde3ea;
+}
+
+.task span {
+  font-size: 1rem;
+  color: #22223b;
+  flex: 1;
+}
+
+/* ===========================
+   Task Action Buttons
+   =========================== */
+/* Button colors match their column, with slight differences */
+.column[data-status="todo"] .task button {
+  background: #dbe7ff;
+  color: #4f5d75;
+}
+.column[data-status="inprogress"] .task button {
+  background: #e2e7ff;
+  color: #4f5d75;
+}
+.column[data-status="done"] .task button {
+  background: #d3e3ff;
+  color: #4f5d75;
+}
+
+.task button {
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-left: 8px;
+  padding: 4px 6px;
+  border-radius: 4px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.task button:hover {
+  background: #c9d6e3;
+  color: #22223b;
+}
+
+/* ===========================
+   Add Task Button
+   =========================== */
+/* Add Task button matches column color, slightly darker */
+.column[data-status="todo"] > button {
+  background: #c2d6ff;
+  color: #22223b;
+}
+.column[data-status="inprogress"] > button {
+  background: #c7d0ff;
+  color: #22223b;
+}
+.column[data-status="done"] > button {
+  background: #b3cfff;
+  color: #22223b;
+}
+
+button {
+  border: none;
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-size: 0.98rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: #22223b;
+  color: #fff;
+}
+
+/* ===========================
+   Responsive Design
+   =========================== */
+@media (max-width: 1000px) {
+  #kanban {
+    flex-direction: column;
+    align-items: center;
+  }
+  .column {
+    width: 90vw;
+    margin-bottom: 24px;
+  }
+}
