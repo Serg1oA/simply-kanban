@@ -1,0 +1,11 @@
+{
+  "name": "simply-kanban",
+  "version": "1.0.0",
+  "description": "A simple Kanban board",
+  "scripts": {
+    "start": "http-server ./"
+  },
+  "dependencies": {
+    "http-server": "^14.1.1"
+  }
+}
