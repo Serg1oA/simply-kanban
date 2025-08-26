@@ -81,6 +81,7 @@ h1 {
   flex: 1;
   min-height: 40px;
   margin-bottom: 12px;
+  position: relative;
 }
 
 /* ===========================
@@ -97,6 +98,7 @@ h1 {
   box-shadow: 0 1px 4px rgba(0,0,0,0.04);
   transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
   cursor: grab;
+  position: relative;
 }
 
 .task:hover {
@@ -109,6 +111,7 @@ h1 {
   opacity: 0.5;
   transform: rotate(5deg);
   cursor: grabbing;
+  z-index: 1000;
 }
 
 .task span {
@@ -126,6 +129,67 @@ h1 {
 
 .task-text:hover {
   background: rgba(255, 255, 255, 0.3);
+}
+
+/* ===========================
+   Enhanced Drag Visual Feedback
+   =========================== */
+.drag-over-task {
+  background: #c9d6e3 !important;
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(79, 93, 117, 0.2);
+}
+
+.drop-indicator {
+  height: 3px;
+  background: #4f5d75;
+  margin: 2px 0;
+  border-radius: 2px;
+  opacity: 0.8;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* Enhanced column drag-over state */
+.tasks.drag-over {
+  background: rgba(79, 93, 117, 0.08);
+  border: 2px dashed #4f5d75;
+  border-radius: 8px;
+  min-height: 80px;
+}
+
+.tasks {
+  transition: background 0.2s, border 0.2s;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  padding: 4px;
+}
+
+/* Smooth transitions for task reordering */
+.task:not(.dragging) {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Visual feedback when dragging over tasks */
+.task.drag-over-task::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #4f5d75;
+  border-radius: 2px;
+  animation: shimmer 1s infinite;
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
 }
 
 /* ===========================
@@ -154,27 +218,11 @@ h1 {
 .new-task-input {
   background: rgba(255, 255, 255, 0.6);
   border: 2px dashed #4f5d75;
+  cursor: default;
 }
 
 .new-task-input .task-input {
   background: transparent;
-}
-
-/* ===========================
-   Drag and Drop Visual Feedback
-   =========================== */
-.tasks.drag-over {
-  background: rgba(79, 93, 117, 0.1);
-  border: 2px dashed #4f5d75;
-  border-radius: 8px;
-  min-height: 60px;
-}
-
-.tasks {
-  transition: background 0.2s, border 0.2s;
-  border: 2px solid transparent;
-  border-radius: 8px;
-  padding: 4px;
 }
 
 /* ===========================

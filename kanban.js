@@ -184,15 +184,41 @@ function handleDragLeave(e) {
 function handleDrop(e) {
   e.preventDefault();
   this.classList.remove('drag-over');
-  
+
   if (draggedElement) {
     const taskId = parseInt(draggedElement.dataset.taskId);
     const newStatus = this.closest('.column').dataset.status;
-    
-    // Update task status
+
+    // Find the target task *after* which we want to insert our dragged task
+    const dropTarget = e.target.closest('.task');
+    const dropTargetId = dropTarget ? parseInt(dropTarget.dataset.taskId) : null;
+
+    // Update task status and reorder tasks
     const task = tasks.find(t => t.id === taskId);
     if (task) {
+      const oldStatus = task.status;
       task.status = newStatus;
+
+      // If the task is moved within the same column
+      if (oldStatus === newStatus) {
+        // Remove the task from its old position
+        tasks = tasks.filter(t => t.id !== taskId);
+
+        // Find the index of the drop target
+        let dropIndex = tasks.findIndex(t => t.id === dropTargetId);
+
+        // If there is no drop target, add the task to the end of the array
+        if (dropIndex === -1) {
+          dropIndex = tasks.length;
+        }
+        // If the drop target is before the dragged element, we need to account for the removed element
+        else if (tasks.findIndex(t => t.id === taskId) < dropIndex) {
+          dropIndex--;
+        }
+
+        // Insert the task at the correct position
+        tasks.splice(dropIndex, 0, task);
+      }
       renderTasks();
     }
   }

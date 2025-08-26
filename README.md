@@ -1,1 +1,2 @@
-# simply-kanban
+# Simply KanBan
+## Live demo: https://simply-kanban.onrender.com
