@@ -249,6 +249,14 @@ button:hover {
   color: var(--warm-beige);
 }
 
+/* Footer Styles */
+footer {
+  text-align: center;
+  margin: 25px 0;
+  font-size: 0.9rem;
+  color: var(--light-charcoal);
+}
+
 /* ===========================
    Responsive Design
    =========================== */

@@ -10,23 +10,33 @@
   </head>
   <body>
     <h1>Simply Kanban</h1>
+    
     <div id="kanban">
       <div class="column" data-status="todo">
         <h2>To Do</h2>
         <div class="tasks"></div>
         <button onclick="addTask('todo')">Add Task</button>
       </div>
+
       <div class="column" data-status="inprogress">
         <h2>In Progress</h2>
         <div class="tasks"></div>
         <button onclick="addTask('inprogress')">Add Task</button>
       </div>
+      
       <div class="column" data-status="done">
         <h2>Done</h2>
         <div class="tasks"></div>
         <button onclick="addTask('done')">Add Task</button>
       </div>
     </div>
+
+    <footer>
+      Made by Sérgio Almeida -
+      <a href="https://github.com/Serg1oA" target="_blank">GitHub</a> |
+      <a href="https://www.linkedin.com/in/almeidasergiomc/" target="_blank">LinkedIn</a>
+    </footer>
+
     <script src="kanban.js"></script>
   </body>
 </html>
